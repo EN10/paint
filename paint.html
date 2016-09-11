@@ -1,0 +1,27 @@
+<p id='t'> </p>
+<canvas id='c' width=1000 height=500></canvas>
+<script>
+var c = document.getElementById('c').getContext('2d')
+var paint = false
+var w = 5
+window.onmousedown = toggle
+window.onmousemove = draw
+window.onkeypress = color
+
+function toggle(){ 
+if (paint)	{ paint = false;	c.clearRect(0,0,w,w) }
+else		{ paint = true;		c.fillRect(0,0,w,w)  }
+}
+
+function draw(e){
+if (paint) 	  c.fillRect(e.x,e.y,w,w)
+}
+
+function color(e){
+c.fillStyle = document.getElementById('i').value
+if (document.getElementById('w').value - 1 > 0) w = document.getElementById('w').value
+if (paint)	  c.fillRect(0,0,w,w);
+}
+</script>
+<br> color <input id ='i'>
+<br> width <input id ='w'>
